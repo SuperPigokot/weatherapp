@@ -1,11 +1,14 @@
 package com.example.myapplication
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-//лох
+
+@Entity(tableName = "uf_index")
+data class ufIndex (
+    @PrimaryKey @ColumnInfo("uf_index_id") val id: Int,
+    @ColumnInfo("diapason") val diapason: String?
+)
