@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
     private val locationPermissionCode = 2
     private var long: Double = 0.0
     private var lat: Double = 0.0
-    private val API: String ="8e111e527dd99a6d0e69b8a945da397f"
+    private val API: String = "8e111e527dd99a6d0e69b8a945da397f"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         getAdditionalResult()
     }
     private fun getLocation() {
-        var locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
         }
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         val queue = Volley.newRequestQueue(this)
         val stringRequest = StringRequest(Request.Method.GET, url,
             {
-                response-> SetResult(response, "main")
+                response-> setResult(response, "main")
             },
             {
                 Log.d("MyLog", "VolleyError: $it")
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         val queue = Volley.newRequestQueue(this)
         val stringRequest = StringRequest(Request.Method.GET, url,
             {
-                    response-> SetResult(response, "additional")
+                    response-> setResult(response, "additional")
             },
             {
                 Log.d("MyLog", "VolleyError: $it")
@@ -93,22 +93,22 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     @SuppressLint("SimpleDateFormat")
     private fun getDateTime(s: String): String? {
-        try {
+        return try {
             val sdf = SimpleDateFormat("HH:m")
             val netDate = Date(s.toLong() * 1000)
-            return sdf.format(netDate)
+            sdf.format(netDate)
         } catch (e: Exception) {
-            return e.toString()
+            e.toString()
         }
     }
 
-    private fun getCityName(city: String): String? {
-        var cityArray = city.split("/")
+    private fun getCityName(city: String): String {
+        val cityArray = city.split("/")
         return cityArray.last()
     }
 
     @SuppressLint("SetTextI18n")
-    private fun SetResult(response: String, type: String) {
+    private fun setResult(response: String, type: String) {
         if (type == "main") {
             val responseObj = JSONObject(response)
             val currentWeather = responseObj.getJSONObject("current")
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
             val tempMinLabel: TextView = findViewById(R.id.temp_min)
             val tempMaxLabel: TextView = findViewById(R.id.temp_max)
             val cityLabel: TextView = findViewById(R.id.address)
-            cityLabel.text = getCityName(responseObj.getString("timezone"))?.replace("_", " ")
+            cityLabel.text = getCityName(responseObj.getString("timezone")).replace("_", " ")
             tempMinLabel.text = tempMinLabel.text.toString() + "\n" + dailyTemp.getString("min") + "°C"
             tempMaxLabel.text = tempMaxLabel.text.toString() + "\n" + dailyTemp.getString("max") + "°C"
             moonPhaseLabel.text = dailyWeather.getString("moon_phase")
