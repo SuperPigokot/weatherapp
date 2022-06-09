@@ -10,85 +10,71 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:id="@+id/maimContainer"
-        android:visibility="visible"
+        android:id="@+id/mainContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/addressContainer"
-            android:orientation="vertical"
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/address"
-                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
-
-            <TextView
-                android:id="@+id/updated_at"
-                android:textSize="14sp"
-                android:text="Updated at"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:textSize="24sp"></TextView>
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/overviewContainer"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/status"
-                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Clear Sky"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:textSize="18sp"></TextView>
 
             <TextView
-                android:id="@+id/temp"
-                android:textSize="90sp"
-                android:fontFamily="sans-serif-thin"
-                android:layout_gravity="center"
-                android:text="24°C"
+                android:id="@+id/temp_value"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-thin"
+                android:textSize="90sp"></TextView>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/temp_min"
-                    android:text="Минимум"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:layout_height="49dp"
+                    android:text="Минимум"></TextView>
+
                 <Space
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content">
-                </Space>
+                    android:layout_height="wrap_content"></Space>
 
                 <TextView
                     android:id="@+id/temp_max"
-                    android:text="Максимум"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:layout_height="49dp"
+                    android:text="Максимум"></TextView>
 
             </LinearLayout>
 
@@ -96,51 +82,49 @@
 
         <LinearLayout
             android:id="@+id/detailsContainer"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
+                    android:id="@+id/sunrise"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/sunrise"
-                        android:tint="#FFF">
-                    </ImageView>
+                        app:tint="#FFF"></ImageView>
 
                     <Space
+                        android:layout_width="5dp"
+                        android:layout_height="wrap_content"></Space>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="5dp">
-                    </Space>
-
-                    <TextView
-                        android:textSize="12sp"
                         android:text="Восход"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
-                        android:id="@+id/sunrise"
-                        android:textSize="14sp"
-                        android:text="5:30am"
+                        android:id="@+id/sunrise_value"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14sp"></TextView>
 
                 </LinearLayout>
 
@@ -151,39 +135,37 @@
                 </Space>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
+                    android:id="@+id/sunset"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/sunset"
-                        android:tint="#FFF">
-                    </ImageView>
+                        app:tint="#FFF"></ImageView>
 
                     <Space
+                        android:layout_width="5dp"
+                        android:layout_height="wrap_content"></Space>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="5dp">
-                    </Space>
-
-                    <TextView
-                        android:textSize="12sp"
                         android:text="Закат"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
-                        android:id="@+id/sunset"
-                        android:textSize="14sp"
-                        android:text="5:30am"
+                        android:id="@+id/sunset_value"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14sp"></TextView>
 
                 </LinearLayout>
 
@@ -194,39 +176,37 @@
                 </Space>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
+                    android:id="@+id/uv_index"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/uf"
-                        android:tint="#FFF">
-                    </ImageView>
+                        app:tint="#FFF"></ImageView>
 
                     <Space
+                        android:layout_width="5dp"
+                        android:layout_height="wrap_content"></Space>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="5dp">
-                    </Space>
-
-                    <TextView
-                        android:textSize="12sp"
                         android:text="УФ индекс"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
-                        android:id="@+id/uf"
-                        android:textSize="14sp"
-                        android:text="5:30am"
+                        android:id="@+id/uv_index_value"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14sp"></TextView>
 
                 </LinearLayout>
 
@@ -237,50 +217,49 @@
                 </Space>
 
             </LinearLayout>
+
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="10dp">
-            </Space>
+                android:layout_height="10dp"></Space>
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
+                    android:id="@+id/wind"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/wind"
-                        android:tint="#FFF">
-                    </ImageView>
+                        app:tint="#FFF"></ImageView>
 
                     <Space
+                        android:layout_width="5dp"
+                        android:layout_height="wrap_content"></Space>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="5dp">
-                    </Space>
-
-                    <TextView
-                        android:textSize="12sp"
                         android:text="Ветер"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
-                        android:id="@+id/wind"
-                        android:textSize="14sp"
-                        android:text="5:30am"
+                        android:id="@+id/wind_value"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14sp"></TextView>
 
                 </LinearLayout>
 
@@ -291,39 +270,37 @@
                 </Space>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
+                    android:id="@+id/pressure"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/pressure"
-                        android:tint="#FFF">
-                    </ImageView>
+                        app:tint="#FFF"></ImageView>
 
                     <Space
+                        android:layout_width="5dp"
+                        android:layout_height="wrap_content"></Space>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="5dp">
-                    </Space>
-
-                    <TextView
-                        android:textSize="12sp"
                         android:text="Давление"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
-                        android:id="@+id/pressure"
-                        android:textSize="14sp"
-                        android:text="5:30am"
+                        android:id="@+id/pressure_value"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14sp"></TextView>
 
                 </LinearLayout>
 
@@ -334,39 +311,37 @@
                 </Space>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
+                    android:id="@+id/moon_phase"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/moon"
-                        android:tint="#FFF">
-                    </ImageView>
+                        app:tint="#FFF"></ImageView>
 
                     <Space
+                        android:layout_width="5dp"
+                        android:layout_height="wrap_content"></Space>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="5dp">
-                    </Space>
-
-                    <TextView
-                        android:textSize="12sp"
                         android:text="Фаза луны"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
-                        android:id="@+id/moon"
-                        android:textSize="14sp"
-                        android:text="5:30am"
+                        android:id="@+id/moon_phase_value"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14sp"></TextView>
 
                 </LinearLayout>
 
