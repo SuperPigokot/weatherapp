@@ -102,33 +102,41 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
     }
 
+    private fun getCityName(city: String): String? {
+        var cityArray = city.split("/")
+        return cityArray.last()
+    }
+
     @SuppressLint("SetTextI18n")
     private fun SetResult(response: String, type: String) {
         if (type == "main") {
             val responseObj = JSONObject(response)
             val currentWeather = responseObj.getJSONObject("current")
-            var currentWeatherDescriptionArray = currentWeather.getJSONArray("weather")
-            var currentWeatherDescription = currentWeatherDescriptionArray.getJSONObject(0)
-            var sunsetLabel: TextView = findViewById(R.id.sunset_value)
-            var sunriseLabel: TextView = findViewById(R.id.sunrise_value)
-            var uvIndexLabel: TextView = findViewById(R.id.uv_index_value)
-            var pressureLabel: TextView = findViewById(R.id.pressure_value)
-            var windLabel: TextView = findViewById(R.id.wind_value)
-            var statusLabel: TextView = findViewById(R.id.status)
+            val currentWeatherDescriptionArray = currentWeather.getJSONArray("weather")
+            val currentWeatherDescription = currentWeatherDescriptionArray.getJSONObject(0)
+            val sunsetLabel: TextView = findViewById(R.id.sunset_value)
+            val sunriseLabel: TextView = findViewById(R.id.sunrise_value)
+            val uvIndexLabel: TextView = findViewById(R.id.uv_index_value)
+            val pressureLabel: TextView = findViewById(R.id.pressure_value)
+            val windLabel: TextView = findViewById(R.id.wind_value)
+            val statusLabel: TextView = findViewById(R.id.status)
             sunsetLabel.text = getDateTime((currentWeather.getInt("sunset") + responseObj.getInt("timezone_offset")).toString())
             sunriseLabel.text = getDateTime((currentWeather.getInt("sunrise") + responseObj.getInt("timezone_offset")).toString())
             uvIndexLabel.text = currentWeather.getString("uvi")
             pressureLabel.text = currentWeather.getString("pressure")
             windLabel.text = currentWeather.getString("wind_speed")
             statusLabel.text = currentWeatherDescription.getString("main")
+
         } else if (type == "additional") {
             val responseObj = JSONObject(response)
             val dailyWeatherArray = responseObj.getJSONArray("daily")
             val dailyWeather = dailyWeatherArray.getJSONObject(0)
             val dailyTemp = dailyWeather.getJSONObject("temp")
-            var moonPhaseLabel: TextView = findViewById(R.id.moon_phase_value)
-            var tempMinLabel: TextView = findViewById(R.id.temp_min)
-            var tempMaxLabel: TextView = findViewById(R.id.temp_max)
+            val moonPhaseLabel: TextView = findViewById(R.id.moon_phase_value)
+            val tempMinLabel: TextView = findViewById(R.id.temp_min)
+            val tempMaxLabel: TextView = findViewById(R.id.temp_max)
+            val cityLabel: TextView = findViewById(R.id.address)
+            cityLabel.text = getCityName(responseObj.getString("timezone"))?.replace("_", " ")
             tempMinLabel.text = tempMinLabel.text.toString() + "\n" + dailyTemp.getString("min") + "°C"
             tempMaxLabel.text = tempMaxLabel.text.toString() + "\n" + dailyTemp.getString("max") + "°C"
             moonPhaseLabel.text = dailyWeather.getString("moon_phase")
