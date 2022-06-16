@@ -1,0 +1,46 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "31c43f9546d62f35e1b6a682ab93bd21",
+    "entities": [
+      {
+        "tableName": "uvi",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uvi_id` INTEGER NOT NULL, `diapason_from` INTEGER, `diapason_to` INTEGER, PRIMARY KEY(`uvi_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "uvi_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diapason_from",
+            "columnName": "diapason_from",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "diapason_to",
+            "columnName": "diapason_to",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uvi_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '31c43f9546d62f35e1b6a682ab93bd21')"
+    ]
+  }
+}

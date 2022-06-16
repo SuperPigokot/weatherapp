@@ -1,0 +1,46 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "3e15a523d0418ee00460aa161230fb00",
+    "entities": [
+      {
+        "tableName": "cream",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cream_id` INTEGER NOT NULL, `uf_index_id` INTEGER NOT NULL, `name` TEXT, PRIMARY KEY(`cream_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "cream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uf_index_id",
+            "columnName": "uf_index_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "cream_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3e15a523d0418ee00460aa161230fb00')"
+    ]
+  }
+}
