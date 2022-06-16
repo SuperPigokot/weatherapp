@@ -2,10 +2,7 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -13,6 +10,7 @@ class UviActivity : AppCompatActivity() {
     private val uviDatabase by lazy { com.example.myapplication.uviDatabase.getDatabase(this).ufIndexDao() }
     private val creamDatabase by lazy { com.example.myapplication.CreamDatabase.getDatabase(this).dataDao() }
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_uvi)
         val uviValue = intent.getSerializableExtra("uvi_value") as String

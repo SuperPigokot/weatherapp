@@ -7,12 +7,16 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.text.TextUtils.concat
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.room.Room
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -21,13 +25,14 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
-//test
+//test§
 class MainActivity : AppCompatActivity(), LocationListener {
     private val locationPermissionCode = 2
     private var long: Double? = null
     private var lat: Double? = null
     private val API: String = "8e111e527dd99a6d0e69b8a945da397f"
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         getLocation()
@@ -43,7 +48,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
         for (provider in providers)
         {
             val location = locationManager.getLastKnownLocation(provider)
-//            Log.d("providers", provider.toString() + " " + location.toString())
             if (location != null) {
                 this.long = location.longitude
                 this.lat = location.latitude
@@ -59,10 +63,32 @@ class MainActivity : AppCompatActivity(), LocationListener {
         intentUviActivity.putExtra("uvi_value", uvIndexLabel.text.toString())
         startActivity(intentUviActivity)
     }
+
+    fun openOther(view: View) {
+        var element_id = view.id
+        var linearView : LinearLayout = findViewById(element_id)
+        var childCount = linearView.childCount
+        var otherText = ""
+        for (index in 0 .. childCount) {
+            var child = linearView.getChildAt(index)
+            if (child != null) {
+                var childText: TextView? = findViewById(child.id)
+                if (childText != null) {
+                    otherText = concat(otherText, childText.text.toString()) as String
+                    otherText = concat(otherText, " ") as String
+                }
+            }
+        }
+        if (!otherText.isEmpty()) {
+            val intentOverActivity = Intent(this, OtherActivity::class.java)
+            intentOverActivity.putExtra("text", otherText)
+            startActivity(intentOverActivity)
+        }
+    }
+
     override fun onLocationChanged(location: Location) {
         this.long = location.longitude
         this.long = location.latitude
-//        Log.d("Coord", "Coord: ${this.long}latitude ${this.lat}")
     }
 
     private fun getResult() {
@@ -79,7 +105,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 response-> setResult(response, "main")
             },
             {
-//                Log.d("MyLog", "VolleyError: $it")
+                Log.d("MyLog", "VolleyError: $it")
             }
         )
         queue.add(stringRequest)
@@ -99,7 +125,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                     response-> setResult(response, "additional")
             },
             {
-//                Log.d("MyLog", "VolleyError: $it")
+                Log.d("MyLog", "VolleyError: $it")
             }
         )
         queue.add(stringRequest)
@@ -130,6 +156,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
             val currentWeatherDescription = currentWeatherDescriptionArray.getJSONObject(0)
             val sunsetLabel: TextView = findViewById(R.id.sunset_value)
             val sunriseLabel: TextView = findViewById(R.id.sunrise_value)
+            val weatherLabel: TextView = findViewById(R.id.current_weather)
             val pressureLabel: TextView = findViewById(R.id.pressure_value)
             val windLabel: TextView = findViewById(R.id.wind_value)
             val statusLabel: TextView = findViewById(R.id.status)
@@ -137,6 +164,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
             sunriseLabel.text = getDateTime((currentWeather.getInt("sunrise") + responseObj.getInt("timezone_offset")).toString())
             pressureLabel.text = currentWeather.getString("pressure")
             windLabel.text = currentWeather.getString("wind_speed")
+            weatherLabel.text = "Текущая температура:" + "\n" + currentWeather.getString("temp") + " " + "°C"
             statusLabel.text = currentWeatherDescription.getString("main")
 
         } else if (type == "additional") {
