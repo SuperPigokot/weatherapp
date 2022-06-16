@@ -21,7 +21,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+//test
 class MainActivity : AppCompatActivity(), LocationListener {
     private val locationPermissionCode = 2
     private var long: Double? = null
