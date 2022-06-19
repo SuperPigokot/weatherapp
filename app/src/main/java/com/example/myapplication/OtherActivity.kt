@@ -14,3 +14,5 @@ class OtherActivity : AppCompatActivity() {
         textlabel.text = otherText
     }
 }
+
+//

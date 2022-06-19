@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         intentUviActivity.putExtra("uvi_value", uvIndexLabel.text.toString())
         startActivity(intentUviActivity)
     }
-
+//
     fun openOther(view: View) {
         var element_id = view.id
         var linearView : LinearLayout = findViewById(element_id)

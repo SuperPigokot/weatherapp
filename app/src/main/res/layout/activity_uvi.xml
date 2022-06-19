@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_bg"
     tools:context=".UviActivity">
-
+<!---->
     <TextView
         android:id="@+id/uviValue"
         android:layout_width="404dp"

@@ -73,3 +73,4 @@ abstract class uviDatabase : RoomDatabase() {
         val PREPOPULATE_DATA = listOf(Uvi(1, 1, 2), Uvi(2, 2, 5), Uvi(3, 5, 7), Uvi(4, 7, 10), Uvi(5, 10, 99))
     }
 }
+//
