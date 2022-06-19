@@ -115,6 +115,7 @@
                         android:layout_height="wrap_content"></Space>
 
                     <TextView
+                        android:id="@+id/sunrise_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Восход"
@@ -157,6 +158,7 @@
                         android:layout_height="wrap_content"></Space>
 
                     <TextView
+                        android:id="@+id/sunset_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Закат"
@@ -253,6 +255,7 @@
                         android:layout_height="wrap_content"></Space>
 
                     <TextView
+                        android:id="@+id/wind_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ветер"
@@ -295,6 +298,7 @@
                         android:layout_height="wrap_content"></Space>
 
                     <TextView
+                        android:id="@+id/pressure_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Давление"
@@ -322,7 +326,6 @@
                     android:layout_weight="1"
                     android:background="#3CF1EBF1"
                     android:gravity="center"
-                    android:onClick="openOther"
                     android:orientation="vertical"
                     android:padding="8dp">
 
@@ -337,7 +340,7 @@
                         android:layout_height="wrap_content"></Space>
 
                     <TextView
-                        android:id="@+id/moon_phase_label"
+                        android:id="@+id/moon_phase_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Фаза луны"

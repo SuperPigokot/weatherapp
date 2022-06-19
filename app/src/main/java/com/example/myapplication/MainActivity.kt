@@ -11,13 +11,10 @@ import android.text.TextUtils.concat
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
-import androidx.room.Room
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -76,6 +73,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
             if (child != null) {
                 var childText: TextView? = findViewById(child.id)
                 if (childText != null) {
+                    Log.d("string:",childText.toString())
                     otherText = concat(otherText, childText.text.toString()) as String
                     otherText = concat(otherText, " ") as String
                 }
@@ -134,7 +132,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun getDateTime(s: String): String? {
+    private fun getDateTime(s: Int): String? {
         return try {
             val sdf = SimpleDateFormat("HH:m")
             val netDate = Date(s.toLong() * 1000)
@@ -162,9 +160,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
             val pressureLabel: TextView = findViewById(R.id.pressure_value)
             val windLabel: TextView = findViewById(R.id.wind_value)
             val statusLabel: TextView = findViewById(R.id.status)
-            sunsetLabel.text = getDateTime((currentWeather.getInt("sunset") + responseObj.getInt("timezone_offset")).toString())
-            sunriseLabel.text = getDateTime((currentWeather.getInt("sunrise") + responseObj.getInt("timezone_offset")).toString())
-            pressureLabel.text = currentWeather.getString("pressure")
+            sunsetLabel.text = getDateTime((currentWeather.getInt("sunset")))
+            sunriseLabel.text = getDateTime((currentWeather.getInt("sunrise")))
+            pressureLabel.text = (currentWeather.getInt("pressure") * 0.75).toString()
             windLabel.text = currentWeather.getString("wind_speed")
             weatherLabel.text = "Текущая температура:" + "\n" + currentWeather.getString("temp") + " " + "°C"
             statusLabel.text = currentWeatherDescription.getString("main")
