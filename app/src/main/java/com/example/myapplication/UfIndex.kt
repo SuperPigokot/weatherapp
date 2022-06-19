@@ -70,6 +70,6 @@ abstract class uviDatabase : RoomDatabase() {
                 })
                 .fallbackToDestructiveMigration().allowMainThreadQueries().build()
 
-        val PREPOPULATE_DATA = listOf(Uvi(1, 1, 2), Uvi(2, 3, 5), Uvi(3, 6, 7), Uvi(4, 8, 10), Uvi(5, 11, 99))
+        val PREPOPULATE_DATA = listOf(Uvi(1, 1, 2), Uvi(2, 2, 5), Uvi(3, 5, 7), Uvi(4, 7, 10), Uvi(5, 10, 99))
     }
 }

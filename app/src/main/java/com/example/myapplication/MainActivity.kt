@@ -53,6 +53,8 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 this.lat = location.latitude
                 break
             }  else {
+                this.long = 48.3978
+                this.lat = 54.3187
                 continue
             }
         }
